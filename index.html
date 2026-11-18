@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CardioGuard - AI Heart Health Portal</title>
+<link rel="stylesheet" href="css/styles.css">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- SVG Favicon with Medical Heart -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 36' fill='%23f43f5e'%3E%3Cpath d='M20 34C20 34 3.5 24.2 3.5 12.8C3.5 6.8 8.1 2.5 13.8 2.5C17.2 2.5 19.1 4.5 20 6C20.9 4.5 22.8 2.5 26.2 2.5C31.9 2.5 36.5 6.8 36.5 12.8C36.5 24.2 20 34 20 34Z'/%3E%3Cpath d='M7 16H14L17 9L21 23L25 13L27 18H33' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+
+<!-- Libraries for OCR Scanner and PDF Generation -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<section id="homePage">
+    <nav class="navbar">
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="logo-heart-icon heart-beat-pulse" aria-hidden="true">
+                <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="navHeartGrad" x1="0" y1="0" x2="40" y2="36" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ff3366"/>
+                            <stop offset="100%" stop-color="#e11d48"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 34C20 34 3.5 24.2 3.5 12.8C3.5 6.8 8.1 2.5 13.8 2.5C17.2 2.5 19.1 4.5 20 6C20.9 4.5 22.8 2.5 26.2 2.5C31.9 2.5 36.5 6.8 36.5 12.8C36.5 24.2 20 34 20 34Z" fill="url(#navHeartGrad)"/>
+                    <path d="M7 16H14L17 9L21 23L25 13L27 18H33" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="logo-text">Cardio<strong>Guard</strong></span>
+            <span class="logo-tag">AI Portal</span>
+        </div>
+        <div class="nav-links">
+            <a href="#homePage">Home</a>
+            <a href="#about" onclick="openHomeSection(event, 'aboutContent')">About System</a>
+            <a href="#healthTips" onclick="openHomeSection(event, 'healthContent')">Heart Health Tips</a>
+            <button type="button" onclick="document.getElementById('registrationForm').requestSubmit()">
+                <span>Access Portal</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Clinical AI Risk Screening &bull; BRFSS Dataset</span>
+            </div>
+
+            <div class="hero-title-group">
+                <h1>Cardio<span class="gradient-text">Guard</span></h1>
+                <div class="logo-heart-icon heart-beat-pulse" style="width: 46px; height: 46px;" aria-hidden="true">
+                    <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="heroHeartGrad" x1="0" y1="0" x2="40" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#ff3366"/>
+                                <stop offset="100%" stop-color="#e11d48"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M20 34C20 34 3.5 24.2 3.5 12.8C3.5 6.8 8.1 2.5 13.8 2.5C17.2 2.5 19.1 4.5 20 6C20.9 4.5 22.8 2.5 26.2 2.5C31.9 2.5 36.5 6.8 36.5 12.8C36.5 24.2 20 34 20 34Z" fill="url(#heroHeartGrad)"/>
+                        <path d="M7 16H14L17 9L21 23L25 13L27 18H33" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h2>Smarter Insights.<br><span>Healthier Tomorrow.</span></h2>
+            <p>Empowering preventative healthcare with machine learning trained on 308,000+ CDC health survey records.</p>
+
+            <div class="hero-features">
+                <div class="hero-feature-item">
+                    <span class="feature-check-icon">✓</span>
+                    <span>Instant, calibrated cardiovascular risk estimation</span>
+                </div>
+                <div class="hero-feature-item">
+                    <span class="feature-check-icon">✓</span>
+                    <span>AI OCR scanner to auto-fill metrics from medical slips</span>
+                </div>
+                <div class="hero-feature-item">
+                    <span class="feature-check-icon">✓</span>
+                    <span>Downloadable patient clinical health assessment (PDF)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="registration-box">
+            <div class="form-header-badge">
+                <div class="title-wrap">
+                    <div class="form-header-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Patient Health Intake</h2>
+                        <p>Provide clinical metrics for predictive evaluation</p>
+                    </div>
+                </div>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-grid">
+                    <!-- SECTION 1: Personal & Biometrics -->
+                    <div class="form-section-title">
+                        <span>Personal & Body Metrics</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Patient Full Name</label>
+                        <input type="text" id="name" placeholder="e.g. John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Age_Category">Age Category</label>
+                        <select id="Age_Category" required>
+                            <option value="">Select age group</option>
+                            <option value="18-24">18-24 years</option>
+                            <option value="25-29">25-29 years</option>
+                            <option value="30-34">30-34 years</option>
+                            <option value="35-39">35-39 years</option>
+                            <option value="40-44">40-44 years</option>
+                            <option value="45-49">45-49 years</option>
+                            <option value="50-54">50-54 years</option>
+                            <option value="55-59">55-59 years</option>
+                            <option value="60-64">60-64 years</option>
+                            <option value="65-69">65-69 years</option>
+                            <option value="70-74">70-74 years</option>
+                            <option value="75-79">75-79 years</option>
+                            <option value="80+">80+ years</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Sex">Biological Sex</label>
+                        <select id="Sex" required>
+                            <option value="">Select biological sex</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" placeholder="e.g. 175" min="120" max="220" oninput="calculateBMI()" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="e.g. 72" min="30" max="200" step="0.1" oninput="calculateBMI()" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bmi">BMI (Auto-calculated)</label>
+                        <div class="bmi-input-wrap">
+                            <input type="number" id="bmi" placeholder="Calculated automatically" step="0.1" readonly style="background-color: #f1f5f9;" required>
+                            <span class="bmi-badge" id="bmiBadge">Metric</span>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: General & Clinical Health -->
+                    <div class="form-section-title">
+                        <span>Clinical Status & History</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="General_Health">General Health Rating</label>
+                        <select id="General_Health" required>
+                            <option value="">Select general health</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Checkup">Last Routine Checkup</label>
+                        <select id="Checkup" required>
+                            <option value="">Select last checkup</option>
+                            <option value="Within the past year">Within the past year</option>
+                            <option value="Within the past 2 years">Within the past 2 years</option>
+                            <option value="Within the past 5 years">Within the past 5 years</option>
+                            <option value="5 or more years ago">5 or more years ago</option>
+                            <option value="Never">Never</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Diabetes">Diabetes Diagnosis</label>
+                        <select id="Diabetes" required>
+                            <option value="">Select answer</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Depression">Depressive Disorder</label>
+                        <select id="Depression" required>
+                            <option value="">Select answer</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Arthritis">Arthritis</label>
+                        <select id="Arthritis" required>
+                            <option value="">Select answer</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Skin_Cancer">Skin Cancer History</label>
+                        <select id="Skin_Cancer" required>
+                            <option value="">Select answer</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Other_Cancer">Other Cancer History</label>
+                        <select id="Other_Cancer" required>
+                            <option value="">Select answer</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Smoking_History">Smoking History</label>
+                        <select id="Smoking_History" required>
+                            <option value="">Select answer</option>
+                            <option value="No">No (Never/Non-smoker)</option>
+                            <option value="Yes">Yes (Current or former)</option>
+                        </select>
+                    </div>
+
+                    <!-- SECTION 3: Lifestyle & Diet -->
+                    <div class="form-section-title">
+                        <span>Habits & Nutrition</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Exercise">Regular Physical Exercise?</label>
+                        <select id="Exercise" required>
+                            <option value="">Select answer</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Alcohol_Consumption">Alcohol (drinks / week)</label>
+                        <input type="number" id="Alcohol_Consumption" placeholder="e.g. 2" min="0" step="0.1" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Fruit_Consumption">Fruit (servings / week)</label>
+                        <input type="number" id="Fruit_Consumption" placeholder="e.g. 10" min="0" step="0.1" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Green_Vegetables_Consumption">Greens (servings / week)</label>
+                        <input type="number" id="Green_Vegetables_Consumption" placeholder="e.g. 12" min="0" step="0.1" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="FriedPotato_Consumption">Fried Potatoes (servings / week)</label>
+                        <input type="number" id="FriedPotato_Consumption" placeholder="e.g. 2" min="0" step="0.1" value="0" required>
+                    </div>
+                </div>
+
+                <!-- SCANNER SECTION -->
+                <div class="scanner-container">
+                    <input type="file" id="scannerInput" accept="image/*" style="display: none;" onchange="scanDocument(event)">
+                    <button type="button" class="smart-scanner-btn" onclick="document.getElementById('scannerInput').click()">
+                        <svg class="scanner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                        <span>Scan Medical Record Slip (Auto-fill Form)</span>
+                    </button>
+                    <p id="scanStatus"></p>
+                </div>
+
+                <button type="submit" class="start-btn" id="getStartedButton">
+                    <span>Generate AI Assessment</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+
+                <p class="form-note">
+                    <strong>Medical Disclaimer:</strong> CardioGuard is an educational AI demonstration for risk stratification and does not replace certified physician advice.
+                </p>
+            </form>
+        </div>
+    </div>
+    <footer>&copy; 2026 CardioGuard Medical AI &bull; Built with FastAPI & Scikit-Learn &bull; BRFSS Clinical Dataset</footer>
+</section>
+
+<section id="dashboardPage" style="display:none;">
+    <aside class="sidebar">
+        <div>
+            <div class="sidebar-brand">
+                <div class="logo-heart-icon heart-beat-pulse" aria-hidden="true">
+                    <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="sideHeartGrad" x1="0" y1="0" x2="40" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#ff3366"/>
+                                <stop offset="100%" stop-color="#e11d48"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M20 34C20 34 3.5 24.2 3.5 12.8C3.5 6.8 8.1 2.5 13.8 2.5C17.2 2.5 19.1 4.5 20 6C20.9 4.5 22.8 2.5 26.2 2.5C31.9 2.5 36.5 6.8 36.5 12.8C36.5 24.2 20 34 20 34Z" fill="url(#sideHeartGrad)"/>
+                        <path d="M7 16H14L17 9L21 23L25 13L27 18H33" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="sidebar-brand-text">
+                    <strong>CardioGuard</strong>
+                    <small>Clinical AI Portal</small>
+                </div>
+            </div>
+
+            <div class="menu">
+                <button class="active" onclick="showSection('dashboardContent',this)">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </span>
+                    <span>Dashboard</span>
+                </button>
+                <button onclick="showSection('patientContent',this)">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </span>
+                    <span>Patient Intake</span>
+                </button>
+                <button onclick="showSection('riskContent',this)">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </span>
+                    <span>Risk Prediction</span>
+                </button>
+                <button onclick="showSection('healthContent',this)">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </span>
+                    <span>Health Tips</span>
+                </button>
+                <button onclick="showSection('aboutContent',this)">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </span>
+                    <span>About Model</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="engine-status">
+                <span class="status-dot-green"></span>
+                <span>AI Engine: Active (GradientBoost)</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button type="button" class="back-registration-btn" onclick="backToRegistration()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Back to Registration</span>
+                </button>
+                <h3>CardioGuard Clinical Dashboard</h3>
+            </div>
+            <div class="user-menu">
+                <button type="button" class="user-menu-toggle" onclick="toggleUserDropdown(event)">
+                    <span class="user-avatar-dot" id="userInitial">U</span>
+                    <span id="userDisplay">User</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <button type="button" onclick="openPatientDetails()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span>Patient Details</span>
+                    </button>
+                    <button type="button" onclick="backToRegistration()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        <span>New Intake Form</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD TAB -->
+        <div id="dashboardContent" class="page-section">
+            <div class="welcome-banner">
+                <div>
+                    <h1>Welcome to CardioGuard Portal</h1>
+                    <h3>Early Cardiovascular Disease Risk Stratification</h3>
+                    <p>Continuously monitoring epidemiological risk profiles through CDC BRFSS analytics.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-wrap red">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h2>53.3</h2>
+                    <p>Average Cohort Age</p>
+                    <small>BRFSS CDC Dataset</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrap blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="12 6 15 12 21 12 16.5 15.5 18.5 21 12 17.5 5.5 21 7.5 15.5 3 12 9 12 12 6"></polygon>
+                        </svg>
+                    </div>
+                    <h2>91.9%</h2>
+                    <p>Test Accuracy</p>
+                    <small>High Precision Baseline</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrap blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+                            <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+                        </svg>
+                    </div>
+                    <h2>27.5</h2>
+                    <p>Average BMI</p>
+                    <small>BRFSS Cohort Metric</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrap green">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h2 class="green-text">8.2%</h2>
+                    <p>CVD Prevalence</p>
+                    <small>Dataset Target Rate</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- PATIENT INTAKE TAB -->
+        <div id="patientContent" class="page-section" style="display:none;">
+            <div class="content-card">
+                <h2>Patient Intake Details</h2>
+                <p>Registered clinical attributes and biometric metrics</p>
+                <div id="patientDetails">No patient information available. Please complete registration.</div>
+            </div>
+        </div>
+
+        <!-- RISK PREDICTION TAB -->
+        <div id="riskContent" class="page-section" style="display:none;">
+            <div class="content-card">
+                <h2>Cardiovascular Risk Prediction</h2>
+                <p id="riskPatientName">Complete the patient registration form to view an estimate.</p>
+
+                <div class="risk-result">
+                    <div class="risk-result-subtitle">BRFSS Trained Gradient Boosting Assessment</div>
+                    <div class="risk-score" id="riskScore">--%</div>
+                    <div class="risk-meter"><div class="risk-meter-fill" id="riskMeter" style="width: 0%;"></div></div>
+                    <h3 id="riskLabel">No estimate available</h3>
+                    <p id="riskExplanation">Your estimate will appear here after registration.</p>
+                    
+                    <!-- DOWNLOAD PDF BUTTON -->
+                    <button type="button" class="download-report-btn" onclick="downloadPDF()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Download Clinical Report (PDF)</span>
+                    </button>
+                </div>
+
+                <div class="dataset-note">
+                    <strong>About this Model:</strong> CardioGuard utilizes an optimized Gradient Boosting Classifier trained on CDC BRFSS data (308,000+ records). The model employs a tuned recall threshold (0.18) to prioritize early detection and reduce missed cardiovascular warnings.
+                </div>
+            </div>
+        </div>
+
+        <!-- HEALTH INSIGHTS TAB -->
+        <div id="healthContent" class="page-section" style="display:none;">
+            <div class="content-card">
+                <h2>Healthy Living Tips for Your Heart</h2>
+                <p style="margin-bottom: 25px; color: #64748b;">Small, consistent daily habits can significantly support your cardiovascular system and overall well-being.</p>
+                
+                <div class="tip">
+                    <h3>🥗 1. Eat a Heart-Healthy Diet</h3>
+                    <p>Focus on a diet rich in fruits, vegetables, whole grains, and lean proteins. Limit saturated fats, trans fats, and excessive sodium (salt). The Mediterranean diet, emphasizing healthy fats like olive oil and nuts, is highly recommended.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🚶 2. Move Your Body Regularly</h3>
+                    <p>Aim for at least 150 minutes of moderate-intensity aerobic activity (like brisk walking or cycling) per week, plus muscle-strengthening exercises twice a week to maintain optimal blood pressure.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>⚖️ 3. Maintain a Healthy Weight</h3>
+                    <p>Keeping a healthy BMI and waist circumference significantly lowers the workload on your heart. Even a modest 5-10% weight optimization yields major vascular and metabolic benefits.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>😴 4. Prioritize Quality Sleep</h3>
+                    <p>Most adults require 7 to 9 hours of restorative sleep each night. Untreated sleep disturbances like sleep apnea increase hypertension and cardiovascular stress.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🚭 5. Avoid Tobacco and Limit Alcohol</h3>
+                    <p>Smoking damages the endothelium of arterial walls and triggers plaque deposition. Quitting smoking is one of the single most impactful actions for cardiac longevity.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🧘 6. Manage Chronic Stress</h3>
+                    <p>High cortisol and chronic sympathetic activation elevate heart rate and blood pressure. Integrate mindfulness, meditation, breathing drills, or nature walks.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🩺 7. Monitor Your Key Biomarkers</h3>
+                    <p>Regularly track blood pressure, lipid panels (LDL, HDL, triglycerides), and fasting blood glucose to catch early metabolic warning signs before complications arise.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>💧 8. Maintain Optimal Hydration</h3>
+                    <p>Proper hydration supports blood volume and eases circulatory efficiency. Replace high-sugar beverages with water and herbal infusions.</p>
+                </div>
+
+                <div class="dataset-note" style="margin-top: 30px;">
+                    <strong>Emergency Note:</strong> These recommendations are for lifestyle wellness. If you experience crushing chest pressure, shortness of breath, or numbness, call emergency medical services immediately.
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT TAB -->
+        <div id="aboutContent" class="page-section" style="display:none;">
+            <div class="content-card">
+                <h2>About CardioGuard AI</h2>
+                <p style="margin-bottom: 20px; font-size: 1.02rem; color: #334e68;">
+                    <strong>CardioGuard</strong> bridges machine learning diagnostics and preventative patient engagement, delivering instant risk stratification based on verified epidemiological survey data.
+                </p>
+
+                <div class="tip">
+                    <h3>📊 The BRFSS Clinical Dataset</h3>
+                    <p>CardioGuard is trained on the CDC's <strong>Behavioral Risk Factor Surveillance System (BRFSS)</strong> dataset, one of the world's premier continuous health surveys.</p>
+                    <ul style="margin-left: 20px; margin-top: 10px; color: #475569; line-height: 1.6;">
+                        <li><strong>Scale:</strong> 308,000+ validated survey participants.</li>
+                        <li><strong>Features:</strong> 19 lifestyle and clinical variables (BMI, age group, diabetes history, physical activity, dietary patterns).</li>
+                        <li><strong>Target:</strong> Clinically identified cardiovascular disease occurrences.</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <h3>🤖 Machine Learning Architecture</h3>
+                    <p>The backend uses an optimized <strong>Histogram-based Gradient Boosting Classifier</strong> with tuned thresholding to optimize patient safety.</p>
+                    <ul style="margin-left: 20px; margin-top: 10px; color: #475569; line-height: 1.6;">
+                        <li><strong>Accuracy:</strong> ~91.9% test performance.</li>
+                        <li><strong>ROC-AUC:</strong> 0.836 discriminative ability.</li>
+                        <li><strong>Recall Prioritization:</strong> Calibrated decision threshold (0.18) ensures high sensitivity, preventing high-risk patients from receiving false negatives.</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <h3>💻 Technical Stack</h3>
+                    <p>Built as a modern, high-performance web platform:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px; color: #475569; line-height: 1.6;">
+                        <li><strong>Frontend:</strong> Responsive UI with CSS glassmorphism, vector medical iconography, and vanilla JS.</li>
+                        <li><strong>Backend API:</strong> FastAPI and Uvicorn.</li>
+                        <li><strong>ML Toolkit:</strong> Scikit-Learn, Pandas, NumPy, and Joblib.</li>
+                        <li><strong>Client AI:</strong> Tesseract.js client OCR for automated medical form scanning & jsPDF for instant clinical reports.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-note" style="margin-top: 30px; border-left-color: #ef4444;">
+                    <strong>⚠️ Important Disclaimer:</strong> CardioGuard is an educational and analytical research demonstration. It does not provide medical diagnoses or treatment advice. Consult licensed medical personnel for health management.
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>

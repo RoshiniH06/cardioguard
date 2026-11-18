@@ -1,0 +1,9 @@
+model,setting,threshold,accuracy,precision,recall,f1,roc_auc,FN
+LogReg,default 0.50,0.5,0.9194,0.5129,0.0585,0.105,0.8341,3525
+LogReg,tuned,0.18,0.8632,0.2924,0.4874,0.3655,0.8341,1919
+RandomForest,default 0.50,0.5,0.9191,0.5,0.0053,0.0106,0.8285,3724
+RandomForest,tuned,0.17,0.8551,0.2822,0.5128,0.3641,0.8285,1824
+HistGradientBoosting,default 0.50,0.5,0.9192,0.5095,0.0286,0.0541,0.8361,3637
+HistGradientBoosting,tuned,0.19,0.86,0.2911,0.5096,0.3705,0.8361,1836
+Ensemble,default 0.50,0.5,0.9194,0.5311,0.0251,0.0479,0.8362,3650
+Ensemble,tuned,0.18,0.8611,0.2916,0.5019,0.3689,0.8362,1865
