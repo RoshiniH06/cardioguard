@@ -1,9 +1,7 @@
-model,setting,threshold,accuracy,precision,recall,f1,roc_auc,FN
-LogReg,default 0.50,0.5,0.9194,0.5129,0.0585,0.105,0.8341,3525
-LogReg,tuned,0.18,0.8632,0.2924,0.4874,0.3655,0.8341,1919
-RandomForest,default 0.50,0.5,0.9191,0.5,0.0053,0.0106,0.8285,3724
-RandomForest,tuned,0.17,0.8551,0.2822,0.5128,0.3641,0.8285,1824
-HistGradientBoosting,default 0.50,0.5,0.9192,0.5095,0.0286,0.0541,0.8361,3637
-HistGradientBoosting,tuned,0.19,0.86,0.2911,0.5096,0.3705,0.8361,1836
-Ensemble,default 0.50,0.5,0.9194,0.5311,0.0251,0.0479,0.8362,3650
-Ensemble,tuned,0.18,0.8611,0.2916,0.5019,0.3689,0.8362,1865
+threshold,accuracy,precision,recall,specificity,f1,roc_auc,TN,FP,FN,TP,model,fit_time_sec,evaluation_setting
+0.5,0.5053,0.0,0.0,1.0,0.0,0.5,6932,0,6786,0,Dummy Baseline,0.0,Default Threshold (0.50)
+0.5,0.7264,0.753,0.6652,0.7864,0.7064,0.7906,5451,1481,2272,4514,Logistic Regression,0.06,Default Threshold (0.50)
+0.5,0.7171,0.7283,0.6827,0.7507,0.7048,0.7764,5204,1728,2153,4633,K-Nearest Neighbors,0.18,Default Threshold (0.50)
+0.5,0.7267,0.7519,0.668,0.7842,0.7075,0.7905,5436,1496,2253,4533,Support Vector Classifier,0.41,Default Threshold (0.50)
+0.5,0.7339,0.7538,0.686,0.7807,0.7183,0.8009,5412,1520,2131,4655,HistGradientBoosting,0.48,Default Threshold (0.50)
+0.39,0.7224,0.6928,0.7884,0.6578,0.7375,0.8009,4560,2372,1436,5350,HistGradientBoosting,0.48,Optimized Threshold (0.39)

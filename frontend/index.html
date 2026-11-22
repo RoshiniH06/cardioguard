@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CardioGuard - Heart Health Portal</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath d='M15 21 C11 22 9 27 11 33 C13 39 19 45 27 50 C32 47 42 39 43 30 C44 23 39 19 33 19 C29 19 26 21 25 24 C23 21 19 20 15 21 Z' fill='%23dc143c'/%3E%3Cpath d='M13 32 L17 32 L19 28 L21 37 L24 25 L26 34 L28 31 L31 32 L37 32' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+<!-- ==================================
+     IMAGE 4: HOME PAGE
+================================== -->
+
+<section id="homePage">
+
+    <nav class="navbar">
+
+        <div class="logo" style="display:flex; align-items:center; gap:9px; cursor:pointer;" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            <svg class="cardio-realistic-heart heart-rhythm-pulse" style="width:28px; height:28px;" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="navHeartMuscle" cx="35%" cy="32%" r="65%">
+                        <stop offset="0%" stop-color="#ff3366"/>
+                        <stop offset="40%" stop-color="#dc143c"/>
+                        <stop offset="78%" stop-color="#900c28"/>
+                        <stop offset="100%" stop-color="#540818"/>
+                    </radialGradient>
+                    <linearGradient id="navAorta" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ff4d6d"/>
+                        <stop offset="80%" stop-color="#a4161a"/>
+                    </linearGradient>
+                    <linearGradient id="navVena" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#3a86ff"/>
+                        <stop offset="100%" stop-color="#1d3557"/>
+                    </linearGradient>
+                    <linearGradient id="navSpec" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7"/>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+                <path d="M16 11 C16 7, 20 7, 20 11 L20 20 L16 19 Z" fill="url(#navVena)"/>
+                <ellipse cx="18" cy="9" rx="2" ry="1.2" fill="#64dfdf"/>
+                <path d="M23 13 C23 6, 32 6, 32 14 L32 21 C30 19, 25 18, 23 21 Z" fill="url(#navAorta)"/>
+                <path d="M25 9 L24.5 4 C24.5 3, 27 3, 27 4 L27.5 8.5 Z" fill="#ff4d6d"/>
+                <path d="M28.5 8 L29 3 C29 2, 31.5 2, 31.5 3 L31 8.2 Z" fill="#ff4d6d"/>
+                <path d="M32 8.8 L33.5 4.5 C33.5 3.5, 36 4, 35.5 5 L34 10 Z" fill="#ff4d6d"/>
+                <path d="M18 17 C21 14, 28 16, 28 21 L26 25 C22 22, 19 22, 18 24 Z" fill="url(#navVena)"/>
+                <path d="M15 21 C11 22, 9 27, 11 33 C13 39, 19 45, 27 50 C32 47, 42 39, 43 30 C44 23, 39 19, 33 19 C29 19, 26 21, 25 24 C23 21, 19 20, 15 21 Z" fill="url(#navHeartMuscle)"/>
+                <path d="M25 25 C26 31, 24 39, 27 49" stroke="#370617" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+                <path d="M25 32 C28 34, 32 35, 34 37" stroke="#ff758f" stroke-width="1.1" stroke-linecap="round" opacity="0.8"/>
+                <path d="M25 38 C23 40, 20 41, 18 42" stroke="#ff758f" stroke-width="0.9" stroke-linecap="round" opacity="0.65"/>
+                <path d="M14 24 C12 28, 13 34, 16 39 C14.5 35, 14 29, 16 25 C16.8 23, 15 23, 14 24 Z" fill="url(#navSpec)"/>
+                <path d="M35 22 C39 24, 41 28, 40 33 C40.5 29, 39 25, 36 23 Z" fill="url(#navSpec)"/>
+                <path d="M13 32 L17 32 L19 28 L21 37 L24 25 L26 34 L28 31 L31 32 L37 32" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>CardioGuard</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#homePage">Home</a>
+            <a href="#about" onclick="openHomeSection(event, 'aboutContent')">About</a>
+            <a href="#healthTips" onclick="openHomeSection(event, 'healthContent')">Health Tips</a>
+            <button type="button" class="api-status-btn" id="apiStatusBtn" onclick="openApiSettings()" title="Configure Backend API URL"><span class="api-dot" id="apiDot"></span> <span id="apiStatusText">API: Auto</span></button>
+            <button type="button" onclick="document.getElementById('registrationForm').requestSubmit()">Login</button>
+        </div>
+
+    </nav>
+
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <h1 style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                CardioGuard
+                <svg class="cardio-realistic-heart heart-rhythm-pulse" style="width:46px; height:46px;" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="heroHeartMuscle" cx="35%" cy="32%" r="65%">
+                            <stop offset="0%" stop-color="#ff3366"/>
+                            <stop offset="40%" stop-color="#dc143c"/>
+                            <stop offset="78%" stop-color="#900c28"/>
+                            <stop offset="100%" stop-color="#540818"/>
+                        </radialGradient>
+                        <linearGradient id="heroAorta" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#ff4d6d"/>
+                            <stop offset="80%" stop-color="#a4161a"/>
+                        </linearGradient>
+                        <linearGradient id="heroVena" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#3a86ff"/>
+                            <stop offset="100%" stop-color="#1d3557"/>
+                        </linearGradient>
+                        <linearGradient id="heroSpec" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7"/>
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                        </linearGradient>
+                        <filter id="heroDropGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="4.5" flood-color="#dc143c" flood-opacity="0.5"/>
+                        </filter>
+                    </defs>
+                    <g filter="url(#heroDropGlow)">
+                        <path d="M16 11 C16 7, 20 7, 20 11 L20 20 L16 19 Z" fill="url(#heroVena)"/>
+                        <ellipse cx="18" cy="9" rx="2" ry="1.2" fill="#64dfdf"/>
+                        <path d="M23 13 C23 6, 32 6, 32 14 L32 21 C30 19, 25 18, 23 21 Z" fill="url(#heroAorta)"/>
+                        <path d="M25 9 L24.5 4 C24.5 3, 27 3, 27 4 L27.5 8.5 Z" fill="#ff4d6d"/>
+                        <path d="M28.5 8 L29 3 C29 2, 31.5 2, 31.5 3 L31 8.2 Z" fill="#ff4d6d"/>
+                        <path d="M32 8.8 L33.5 4.5 C33.5 3.5, 36 4, 35.5 5 L34 10 Z" fill="#ff4d6d"/>
+                        <path d="M18 17 C21 14, 28 16, 28 21 L26 25 C22 22, 19 22, 18 24 Z" fill="url(#heroVena)"/>
+                        <path d="M15 21 C11 22, 9 27, 11 33 C13 39, 19 45, 27 50 C32 47, 42 39, 43 30 C44 23, 39 19, 33 19 C29 19, 26 21, 25 24 C23 21, 19 20, 15 21 Z" fill="url(#heroHeartMuscle)"/>
+                        <path d="M25 25 C26 31, 24 39, 27 49" stroke="#370617" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M25 32 C28 34, 32 35, 34 37" stroke="#ff758f" stroke-width="1.1" stroke-linecap="round" opacity="0.8"/>
+                        <path d="M25 38 C23 40, 20 41, 18 42" stroke="#ff758f" stroke-width="0.9" stroke-linecap="round" opacity="0.65"/>
+                        <path d="M14 24 C12 28, 13 34, 16 39 C14.5 35, 14 29, 16 25 C16.8 23, 15 23, 14 24 Z" fill="url(#heroSpec)"/>
+                        <path d="M35 22 C39 24, 41 28, 40 33 C40.5 29, 39 25, 36 23 Z" fill="url(#heroSpec)"/>
+                        <path d="M13 32 L17 32 L19 28 L21 37 L24 25 L26 34 L28 31 L31 32 L37 32" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+            </h1>
+
+            <h2>
+                Smarter Insights.<br>
+                Healthier Tomorrow.
+            </h2>
+
+            <p>
+                Enter your details to get started with
+                our cardiovascular health assessment.
+            </p>
+
+        </div>
+
+
+        <div class="registration-box">
+
+            <h2>🛌  Patient Registration</h2>
+
+            <form id="registrationForm">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label for="name">Patient Name</label>
+                        <input type="text" id="name" placeholder="Enter full name" required>
+                    </div>
+
+                    <div>
+                        <label for="age">Age (years)</label>
+                        <input type="number" id="age" placeholder="Enter age (30–65)" min="30" max="65" required>
+                    </div>
+
+                    <div>
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="2">Male</option>
+                            <option value="1">Female</option>
+                            <option value="1.5">Other / Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" placeholder="e.g. 170" min="120" max="220" required>
+                    </div>
+
+                    <div>
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="e.g. 70" min="30" max="200" step="0.1" required>
+                    </div>
+
+                    <div>
+                        <label for="ap_hi">Systolic BP (mmHg)</label>
+                        <input type="number" id="ap_hi" placeholder="e.g. 120" min="60" max="250" required>
+                    </div>
+
+                    <div>
+                        <label for="ap_lo">Diastolic BP (mmHg)</label>
+                        <input type="number" id="ap_lo" placeholder="e.g. 80" min="40" max="150" required>
+                    </div>
+
+                    <div>
+                        <label for="cholesterol">Cholesterol</label>
+                        <select id="cholesterol" required>
+                            <option value="">Select level</option>
+                            <option value="1">Normal</option>
+                            <option value="2">Above normal</option>
+                            <option value="3">Well above normal</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="gluc">Glucose</label>
+                        <select id="gluc" required>
+                            <option value="">Select level</option>
+                            <option value="1">Normal</option>
+                            <option value="2">Above normal</option>
+                            <option value="3">Well above normal</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="smoke">Do you smoke?</label>
+                        <select id="smoke" required>
+                            <option value="">Select answer</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="alco">Alcohol consumption</label>
+                        <select id="alco" required>
+                            <option value="">Select answer</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="active">Physically active?</label>
+                        <select id="active" required>
+                            <option value="">Select answer</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                </div>
+                <p class="form-note">Please enter values from your health records where possible. This educational demo is not a medical diagnosis or a substitute for professional advice.</p>
+
+                <button type="submit" class="start-btn" id="getStartedButton">
+                    Get Started →
+                </button>
+
+                <div class="media-access-buttons">
+                    <button type="button" class="media-access-btn" onclick="openLiveCamera()">📷 Open Camera</button>
+                    <button type="button" class="media-access-btn" onclick="document.getElementById('folderInput').click()">📁 Open Folder</button>
+                </div>
+                <input class="hidden-file-input" type="file" id="cameraInput" accept="image/*" capture="environment">
+                <input class="hidden-file-input" type="file" id="folderInput" webkitdirectory directory multiple accept="image/*">
+                <p class="media-access-status" id="mediaAccessStatus" aria-live="polite">Scan a clear photo of a patient record. Detected details will be filled in for you to review; unsupported or unreadable fields must be entered manually.</p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        © 2026 CardioGuard | Not a medical diagnosis tool.
+    </footer>
+
+</section>
+
+
+
+<!-- ==================================
+     IMAGE 1: DASHBOARD
+================================== -->
+
+<section id="dashboardPage">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand"><span class="brand-mark">✚</span><span><strong>CardioGuard</strong><small>HEALTH PORTAL</small></span></div>
+
+        <div class="menu">
+
+            <button class="active"
+            onclick="showSection('dashboardContent',this)">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Dashboard</span>
+            </button>
+
+            <button onclick="showSection('patientContent',this)">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 8h4m-2-2v4M17 15h4"/></svg></span><span>Patient Intake</span>
+            </button>
+
+            <button onclick="showSection('riskContent',this)">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><span>Risk Prediction</span>
+            </button>
+
+            <button onclick="showSection('calculatorContent',this)">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h2m4 0h2M8 16h2m4 0h2"/></svg></span><span>Health Calculator</span>
+            </button>
+
+            <button onclick="showSection('healthContent',this)">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/><path d="M3 12h5l2-3 3 6 2-3h6"/></svg></span><span>Health Tips</span>
+            </button>
+
+            <button onclick="showSection('aboutContent',this)">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span>About</span>
+            </button>
+
+        </div>
+
+
+        <div class="sidebar-bottom heart-priority-card">
+            <div class="priority-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48"><path d="M24 39s-16-9.5-16-21a9 9 0 0 1 16-5.7A9 9 0 0 1 40 18c0 11.5-16 21-16 21Z"/><path class="priority-pulse" d="M10 24h8l4-8 5 16 4-8h7"/></svg>
+            </div>
+            <span class="priority-kicker">CARE THAT MATTERS</span>
+            <h3>Your Heart</h3>
+            <p>Our Priority</p>
+            <span class="priority-glow" aria-hidden="true"></span>
+        </div>
+
+    </aside>
+
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button type="button" class="back-registration-btn" onclick="backToRegistration()">
+                    ← Back to Patient Registration
+                </button>
+                <h3>CardioGuard Dashboard</h3>
+                <button type="button" class="api-status-btn" onclick="openApiSettings()" title="Configure Backend API URL"><span class="api-dot apiDotMirror"></span> <span class="apiStatusTextMirror">API: Auto</span></button>
+            </div>
+
+            <div class="user-menu" id="userMenu">
+                <button type="button" class="notification-bell" id="notificationBell"
+                        aria-label="Open notifications" aria-expanded="false" aria-controls="notificationPanel" title="Notifications"
+                        onclick="toggleNotificationPanel(event)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>
+                    </svg>
+                    <span class="bell-dot"></span>
+                </button>
+                <section class="notification-panel" id="notificationPanel" aria-label="Notifications" aria-hidden="true">
+                    <div class="notification-panel-head">
+                        <h3>Notifications</h3>
+                        <span class="notification-count" id="notificationCount">2 new</span>
+                    </div>
+                    <div class="notification-actions">
+                        <button type="button" onclick="markAllNotificationsRead()">Mark all as read</button>
+                        <button type="button" onclick="clearNotifications()">Clear all</button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <article class="notification-item unread" data-unread="true" onclick="markNotificationRead(this)">
+                            <span class="notification-symbol" aria-hidden="true">✓</span>
+                            <div class="notification-copy">
+                                <strong>Patient profile saved</strong>
+                                <p>Your patient details have been saved in this session.</p>
+                                <time>Just now · Demo notification</time>
+                            </div>
+                            <span class="notification-unread-dot" aria-hidden="true"></span>
+                        </article>
+                        <article class="notification-item unread" data-unread="true" onclick="markNotificationRead(this)">
+                            <span class="notification-symbol" aria-hidden="true">♡</span>
+                            <div class="notification-copy">
+                                <strong>Health tip available</strong>
+                                <p>Visit the Health Tips section for general heart-health information.</p>
+                                <time>Today · Demo notification</time>
+                            </div>
+                            <span class="notification-unread-dot" aria-hidden="true"></span>
+                        </article>
+                    </div>
+                </section>
+                <button type="button" class="user-menu-toggle" id="userMenuToggle"
+                        aria-expanded="false" aria-controls="userDropdown"
+                        onclick="toggleUserDropdown(event)">
+                    <span id="userDisplay">User</span>
+                    <span class="user-menu-arrow">⌄</span>
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <button type="button" onclick="openPatientDetails()">Patient Details</button>
+                    <button type="button" onclick="backToRegistration(); closeUserDropdown();">Back to Patient Registration</button>
+                </div>
+            </div>
+
+        </header>
+
+
+
+        <!-- DASHBOARD OVERVIEW -->
+
+        <div id="dashboardContent" class="page-section">
+
+            <div class="welcome-banner">
+
+                <div>
+                    <h1>Welcome to CardioGuard</h1>
+
+                    <h3>
+                        Early Cardiovascular Disease Risk Prediction
+                    </h3>
+
+                    <p>Monitor. Prevent. Live Healthier.</p>
+                </div>
+
+                <div class="heart-image" aria-label="Heart health icon">
+                    <div class="welcome-heart-orbit" aria-hidden="true"></div>
+                    <svg class="welcome-heart-svg" viewBox="0 0 120 120" role="img" aria-label="Stylized heart with pulse line">
+                        <defs><linearGradient id="welcomeHeartGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#8ce8e0"/></linearGradient></defs>
+                        <path d="M60 103S15 76 15 42C15 17 45 8 60 31 75 8 105 17 105 42c0 34-45 61-45 61Z" fill="url(#welcomeHeartGradient)" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
+                        <path d="M25 58h19l8-16 13 35 9-19h22" fill="none" stroke="#087f83" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+            </div>
+
+
+
+            <!-- HEALTH STATISTICS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-icon red">♥</span>
+                    <h2>53.3</h2>
+                    <p>Average Age (years)</p>
+                    <small>Cardio training dataset</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon red">♨</span>
+                    <h2>127/81</h2>
+                    <p>Average BP (mmHg)</p>
+                    <small>Cardio training dataset</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon blue">◉</span>
+                    <h2>27.5</h2>
+                    <p>Average BMI</p>
+                    <small>Cardio training dataset</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon green">✔</span>
+                    <h2 class="green-text">49.5%</h2>
+                    <p>Records labelled with cardiovascular disease</p>
+                    <small>Training dataset, not your personal result</small>
+                </div>
+
+            </div>
+
+
+
+            <!-- DAY 2: INTERACTIVE BIOMARKER INDICATORS -->
+            <h2 style="margin:8px 0 6px;">Your Biomarker Indicators</h2>
+            <p class="section-subtitle">Values are taken from your registration or the calculators below. Cholesterol and glucose show the categories selected during registration, not laboratory measurements.</p>
+            <div class="biomarker-grid">
+                <div class="biomarker-card">
+                    <h3>👤 Age</h3><div class="biomarker-value" id="bioAge">--</div>
+                    <span class="biomarker-status status-info" id="bioAgeStatus">Awaiting details</span>
+                </div>
+                <div class="biomarker-card">
+                    <h3>♥ Blood Pressure</h3><div class="biomarker-value" id="bioBP">--</div>
+                    <span class="biomarker-status" id="bioBPStatus">Awaiting reading</span>
+                </div>
+                <div class="biomarker-card">
+                    <h3>⚖ BMI</h3><div class="biomarker-value" id="bioBMI">--</div>
+                    <span class="biomarker-status" id="bioBMIStatus">Awaiting details</span>
+                </div>
+                <div class="biomarker-card">
+                    <h3>🧪 Cholesterol</h3><div class="biomarker-value" id="bioCholesterol">--</div>
+                    <span class="biomarker-status" id="bioCholesterolStatus">Awaiting details</span>
+                </div>
+                <div class="biomarker-card">
+                    <h3>🩸 Glucose</h3><div class="biomarker-value" id="bioGlucose">--</div>
+                    <span class="biomarker-status" id="bioGlucoseStatus">Awaiting details</span>
+                </div>
+                <div class="biomarker-card">
+                    <h3>🚭 Smoking</h3><div class="biomarker-value" id="bioSmoking">--</div>
+                    <span class="biomarker-status" id="bioSmokingStatus">Awaiting details</span>
+                </div>
+                <div class="biomarker-card">
+                    <h3>🏃 Physical Activity</h3><div class="biomarker-value" id="bioActivity">--</div>
+                    <span class="biomarker-status" id="bioActivityStatus">Awaiting details</span>
+                </div>
+            </div>
+
+            <!-- CHART AND QUICK ACTIONS -->
+
+            <div class="bottom-grid">
+
+                <div class="chart-card">
+
+                    <h3>Your Health Overview</h3>
+
+                    <div class="chart">
+
+                        <div class="chart-labels">
+                            <span>150</span>
+                            <span>100</span>
+                            <span>50</span>
+                            <span>0</span>
+                        </div>
+
+                        <svg viewBox="0 0 500 180"
+                        preserveAspectRatio="none">
+
+                            <line x1="0" y1="20"
+                            x2="500" y2="20"/>
+
+                            <line x1="0" y1="65"
+                            x2="500" y2="65"/>
+
+                            <line x1="0" y1="110"
+                            x2="500" y2="110"/>
+
+                            <line x1="0" y1="155"
+                            x2="500" y2="155"/>
+
+                            <polyline
+                            points="0,105 80,90 160,100 240,85 320,90 400,75 500,65"
+                            class="line-one"/>
+
+                            <polyline
+                            points="0,75 80,65 160,78 240,95 320,75 400,60 500,50"
+                            class="line-two"/>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="days">
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                        <span>Sun</span>
+                    </div>
+
+                </div>
+
+
+
+                <div class="quick-card">
+
+                    <h3>Quick Actions</h3>
+
+                    <button onclick="showSection('patientContent')">
+                        📋 Fill Health Form
+                    </button>
+
+                    <button onclick="showSection('riskContent')">
+                        📈 Check Risk Level
+                    </button>
+
+                    <button onclick="showSection('healthContent')">
+                        💡 View Health Tips
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DAY 2: BLOOD PRESSURE AND BMI CALCULATORS -->
+        <div id="calculatorContent" class="page-section" style="display:none;">
+            <div class="content-card">
+                <h2>Health Calculators</h2>
+                <p>Enter a reading to view an informational category. These tools are for adults and do not diagnose a health condition.</p>
+                <div class="calculator-grid">
+                    <div class="calculator-card">
+                        <h3>♥ Blood Pressure Calculator</h3>
+                        <p>Enter systolic (top) and diastolic (bottom) readings in mmHg.</p>
+                        <div class="calculator-fields">
+                            <div><label for="calcSystolic">Systolic BP (mmHg)</label><input id="calcSystolic" type="number" min="50" max="300" placeholder="e.g. 120"></div>
+                            <div><label for="calcDiastolic">Diastolic BP (mmHg)</label><input id="calcDiastolic" type="number" min="30" max="200" placeholder="e.g. 80"></div>
+                        </div>
+                        <button class="calc-btn" type="button" onclick="calculateBloodPressure()">Calculate BP</button>
+                        <div class="calc-result" id="bpResult" aria-live="polite"></div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h3>⚖ BMI Calculator</h3>
+                        <p>Enter height in centimetres and weight in kilograms. Your BMI updates automatically.</p>
+                        <div class="calculator-fields">
+                            <div><label for="calcHeight">Height (cm)</label><input id="calcHeight" type="number" min="50" max="250" step="0.1" placeholder="e.g. 175"></div>
+                            <div><label for="calcWeight">Weight (kg)</label><input id="calcWeight" type="number" min="10" max="500" step="0.1" placeholder="e.g. 70"></div>
+                        </div>
+                        <div class="calc-result visible" id="bmiResult" aria-live="polite">Enter your height and weight to calculate BMI.</div>
+                    </div>
+                </div>
+                <div class="health-reference">
+                    BP categories follow the American Heart Association adult blood-pressure reference. BMI categories follow CDC adult guidance. A single reading is not enough to diagnose hypertension, and BMI is a screening measure.
+                    <br>References: <a href="https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings" target="_blank" rel="noopener">American Heart Association – BP readings</a> ·
+                    <a href="https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html" target="_blank" rel="noopener">CDC – Adult BMI categories</a>
+                </div>
+                <div class="dataset-note">
+                    <strong>Important:</strong> If a BP reading is above 180 systolic and/or 120 diastolic, wait at least one minute and measure again. If it remains that high, contact a healthcare professional. If it is accompanied by chest pain, shortness of breath, weakness, numbness, vision changes or difficulty speaking, seek emergency medical help.
+                </div>
+            </div>
+        </div>
+
+        <!-- PATIENT INTAKE -->
+
+        <div id="patientContent" class="page-section"
+        style="display:none;">
+
+            <div class="content-card">
+
+                <h2>Patient Intake</h2>
+
+                <p>Patient registration information</p>
+
+                <div id="patientDetails">
+                    No patient information available.
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RISK PREDICTION -->
+
+        <div id="riskContent" class="page-section"
+        style="display:none;">
+
+            <div class="content-card">
+                <h2>Cardiovascular Risk Prediction</h2>
+                <p id="riskPatientName">Complete the patient registration form to view an estimate.</p>
+
+                <!-- PRD Model Selector: Compare Primary, SVC, and KNN -->
+                <div class="model-selector-bar">
+                    <span class="model-selector-label">ML Algorithm (PRD Group C):</span>
+                    <button type="button" class="model-toggle-btn active" id="btnModelPrimary" onclick="switchModel('primary')">
+                        Primary Ensemble (80.1% AUC)
+                    </button>
+                    <button type="button" class="model-toggle-btn" id="btnModelSVC" onclick="switchModel('svc')">
+                        Support Vector Classifier (SVC)
+                    </button>
+                    <button type="button" class="model-toggle-btn" id="btnModelKNN" onclick="switchModel('knn')">
+                        K-Nearest Neighbors (KNN)
+                    </button>
+                    <span class="model-badge-tag" id="activeModelTag">Active: Primary Model</span>
+                </div>
+
+                <div class="risk-result">
+                    <div>Machine Learning Risk Estimate</div>
+                    <div class="risk-score" id="riskScore">--%</div>
+                    <div class="risk-meter"><div class="risk-meter-fill" id="riskMeter"></div></div>
+                    <h3 id="riskLabel">No estimate available</h3>
+                    <p id="riskExplanation">Your estimate will appear here after registration.</p>
+                </div>
+
+                <div class="dataset-note">
+                    <strong>PRD Model Evaluation & Benchmarks:</strong>
+                    Trained on 68,586 cleaned records with a stratified 80/20 train/test split.
+                    Candidate algorithms evaluated per PRD Section 3 &amp; 8:
+                    <ul style="margin: 6px 0 6px 20px; font-size: 13px;">
+                        <li><strong>Support Vector Classifier (Calibrated SVC):</strong> Accuracy 72.7% | ROC-AUC 0.791 | Recall 66.8%</li>
+                        <li><strong>K-Nearest Neighbors (KNN k=15):</strong> Accuracy 71.7% | ROC-AUC 0.776 | Recall 68.3%</li>
+                        <li><strong>Primary Ensemble (HistGradientBoosting):</strong> Accuracy 73.4% | ROC-AUC 0.801 | Tuned Recall 78.8%</li>
+                        <li><strong>Baseline (DummyClassifier):</strong> Accuracy 50.5% | ROC-AUC 0.500 | Recall 0.0%</li>
+                    </ul>
+                    Use the buttons above to view live risk predictions generated by each model.
+                </div>
+                <div class="dataset-note">
+                    <strong>Important Non-Diagnostic Disclaimer:</strong> This is an educational screening prototype developed for academic demonstration. It is not a clinical diagnosis or medical device. Always consult a qualified physician for cardiovascular medical evaluation.
+                </div>
+
+                <div class="report-actions no-print">
+                    <button class="report-btn" type="button" onclick="downloadPatientReport()">⬇ Download Report (PDF)</button>
+                    <button class="report-btn secondary" type="button" onclick="printPatientReport()">🖨 Print Report</button>
+                </div>
+                <section id="printableReport" class="report-sheet" aria-label="Patient risk report">
+                    <p>Complete patient registration to generate the report.</p>
+                </section>
+            </div>
+
+        </div>
+
+
+
+        <!-- HEALTH INSIGHTS -->
+
+        <div id="healthContent" class="page-section"
+        style="display:none;">
+
+            <div class="content-card">
+
+                <h2>Healthy Living Tips</h2>
+
+                <p>Small, consistent habits can support your heart and overall well-being. Start with changes that are realistic for you.</p>
+
+                <div class="tip">
+                    <h3>🥗 1. Eat a balanced diet</h3>
+                    <p>Choose a variety of vegetables, fruits, whole grains, beans, nuts and other minimally processed foods. Limit excess salt, sugary drinks and highly processed foods.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🚶 2. Move your body regularly</h3>
+                    <p>Aim for around 150 minutes of moderate activity, such as brisk walking, each week if it is safe for you. Start gradually and include movement breaks during long periods of sitting.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>💧 3. Stay hydrated</h3>
+                    <p>Drink water regularly throughout the day. Your needs can vary with weather, activity and health conditions; follow your clinician's advice if you have fluid restrictions.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>😴 4. Get enough sleep</h3>
+                    <p>Keep a consistent sleep and wake time. Most adults need about 7–9 hours of sleep each night.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🚭 5. Avoid tobacco and limit alcohol</h3>
+                    <p>Do not smoke or use tobacco. Avoiding alcohol is the healthiest choice for many people; if you drink, discuss personal risks with a healthcare professional.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🩺 6. Know your health numbers</h3>
+                    <p>Have your blood pressure, cholesterol and blood glucose checked as recommended. Keep a record and discuss unusual results with a qualified healthcare professional.</p>
+                </div>
+
+                <div class="tip">
+                    <h3>🧘 7. Manage stress</h3>
+                    <p>Try relaxing activities such as slow breathing, stretching, time outdoors or talking with someone you trust. Seek professional support if stress feels difficult to manage.</p>
+                </div>
+
+                <div class="dataset-note">
+                    <strong>Remember:</strong> These are general wellness tips, not a personal treatment plan. If you have a medical condition or symptoms, ask a qualified healthcare professional for advice. Seek urgent medical help for chest pain, severe shortness of breath or fainting.
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ABOUT -->
+
+        <div id="aboutContent" class="page-section"
+        style="display:none;">
+
+            <div class="content-card">
+
+                <h2>About CardioGuard</h2>
+
+                <p><strong>CardioGuard</strong> is an academic prototype of an early cardiovascular disease risk prediction portal developed for the Project-Based End-Semester Assessment (BCA 1st Semester, November 2026).</p>
+
+                <h3>Project Team (Group C)</h3>
+                <ul style="margin: 8px 0 16px 20px; line-height: 1.7; font-size: 14px;">
+                    <li><strong>Roshini Singha:</strong> Team Leader; Machine Learning Pipeline &amp; Comparative Evaluation (SVC &amp; KNN)</li>
+                    <li><strong>Gyanendra Deka:</strong> Backend Development; FastAPI Architecture &amp; Inference Routes</li>
+                    <li><strong>Madhurjya Dewraja:</strong> Data Preparation, Cleaning, Quality Checks &amp; EDA</li>
+                    <li><strong>Manash Sarma:</strong> Frontend Development, UI/UX, Dynamic Dashboard &amp; Biomarkers</li>
+                    <li><strong>Faculty Mentor:</strong> Mr. Soumyajit Jalua (Scholars Institute of Technology and Management)</li>
+                </ul>
+
+                <h3>What this system provides</h3>
+                <p><strong>Patient Intake:</strong> Interactive health screening form accepting age, gender, height, weight, systolic &amp; diastolic BP, cholesterol, glucose, smoking, alcohol, and activity.</p>
+                <p><strong>Multi-Model Prediction:</strong> Real-time inference calling trained pipelines: Support Vector Classifier (SVC), K-Nearest Neighbors (KNN), and HistGradientBoosting ensemble.</p>
+                <p><strong>Health Calculators:</strong> Real-time Blood Pressure classification (AHA criteria) and BMI calculator (CDC criteria).</p>
+                <p><strong>Clinical Reports:</strong> Printable and downloadable PDF health summaries with personalized preventive guidance.</p>
+
+                <h3>Dataset &amp; Methodology</h3>
+                <p><strong>Dataset:</strong> 70,000 patient records from the Cardiovascular Disease dataset. Cleaned of physiological outliers (68,586 valid records retained). Stratified 80/20 train/test split.</p>
+                <p><strong>Pipeline Design:</strong> scikit-learn ColumnTransformers with StandardScaler fitted strictly on training folds to prevent data leakage.</p>
+
+                <h3>Non-Diagnostic Medical Notice</h3>
+                <p>CardioGuard is strictly an educational screening demonstration and academic project. It is not a medical device, does not diagnose disease, and cannot replace a qualified clinician's assessment. Consult a doctor for personal health concerns.</p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</section>
+
+
+
+<!-- ==================================
+     JAVASCRIPT
+================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<!-- LIVE WEBCAM SCANNER MODAL -->
+<div id="liveCameraModal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeLiveCamera()">
+    <div class="camera-viewfinder-card">
+        <div class="camera-viewfinder-head">
+            <h3>📷 Live Patient Record Scanner</h3>
+            <button type="button" class="modal-close-btn" style="color:#ffffff;" onclick="closeLiveCamera()">✕</button>
+        </div>
+        <div class="camera-viewport-wrap">
+            <video id="webcamVideo" autoplay playsinline muted></video>
+            <div class="camera-frame-overlay">
+                <span class="camera-frame-hint">Hold patient report steady within the frame</span>
+            </div>
+            <canvas id="cameraCanvas" style="display:none;"></canvas>
+        </div>
+        <div class="camera-controls-bar">
+            <button type="button" class="camera-fallback-btn" onclick="closeLiveCamera(); document.getElementById('cameraInput').click();">📁 Upload File Instead</button>
+            <button type="button" class="camera-capture-btn" id="btnCaptureSnapshot" onclick="captureLiveSnapshot()">
+                <span>📸 Capture &amp; Scan</span>
+            </button>
+            <button type="button" class="camera-fallback-btn" id="btnFlipCamera" onclick="flipLiveCamera()" style="display:none;">🔄 Flip</button>
+        </div>
+    </div>
+</div>
+
+<!-- API CONFIGURATION MODAL -->
+<div id="apiSettingsModal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeApiSettings()">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h3>⚙️ Backend API Settings</h3>
+            <button type="button" class="modal-close-btn" onclick="closeApiSettings()">✕</button>
+        </div>
+        <p style="font-size:13px; color:#536985; margin:10px 0 14px; line-height:1.5;">
+            Configure your FastAPI backend endpoint. When hosting the frontend independently (e.g. GitHub Pages or Netlify), point this to your cloud or local API URL.
+        </p>
+        <label for="apiUrlInput" style="font-size:13px; font-weight:bold; color:#102b58;">Backend API Base URL</label>
+        <input type="text" id="apiUrlInput" placeholder="Leave empty for Auto or enter e.g. http://127.0.0.1:8000" style="width:100%; box-sizing:border-box; padding:10px; margin:8px 0 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;">
+        <div id="apiTestStatus" style="font-size:12px; margin-bottom:14px; padding:9px 12px; border-radius:6px; display:none;"></div>
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+            <button type="button" class="calc-btn" style="margin-top:0; padding:8px 14px; background:#64748b;" onclick="testApiConnectionUI()">Test Connection</button>
+            <button type="button" class="calc-btn" style="margin-top:0; padding:8px 14px;" onclick="saveApiUrlFromUI()">Save &amp; Apply</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
+

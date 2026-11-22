@@ -1,0 +1,31 @@
+{
+  "raw_record_count": 70000,
+  "clean_record_count": 68586,
+  "records_retained_pct": 97.98,
+  "target_balance": {
+    "absence_pct": 50.53,
+    "presence_pct": 49.47
+  },
+  "feature_means": {
+    "average_age_years": 53.3,
+    "average_systolic_bp": 126.7,
+    "average_diastolic_bp": 81.3,
+    "average_bmi": 27.4,
+    "average_height_cm": 164.4,
+    "average_weight_kg": 74.1
+  },
+  "feature_correlations_with_cardio": {
+    "active": -0.0377,
+    "smoke": -0.0162,
+    "height": -0.0117,
+    "alco": -0.0084,
+    "gender": 0.0073,
+    "gluc": 0.0896,
+    "weight": 0.1812,
+    "bmi": 0.1915,
+    "cholesterol": 0.2215,
+    "age_years": 0.2395,
+    "ap_lo": 0.3408,
+    "ap_hi": 0.4282
+  }
+}
