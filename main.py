@@ -420,6 +420,7 @@ if JS_DIR.exists():
 
 
 @app.get("/")
+@app.get("/index.html")
 def serve_index():
     index_file = FRONTEND_DIR / "index.html"
     if not index_file.exists():

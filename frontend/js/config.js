@@ -6,18 +6,17 @@
  *
  * HOW IT WORKS:
  * 1. If you leave API_BASE_URL as "", CardioGuard automatically detects the URL:
- *    - If served by FastAPI on port 8000: uses relative paths ("/predict", "/health")
- *    - If opened locally or hosted statically: defaults to "http://127.0.0.1:8000"
- * 2. If you deploy your backend to the cloud (e.g. Render, Railway, AWS, Fly.io),
- *    set API_BASE_URL to your cloud URL, e.g.:
- *    API_BASE_URL: "https://your-cardioguard-backend.onrender.com"
+ *    - If running over HTTP/HTTPS (e.g. deployed on Vercel, Render, or localhost:8000),
+ *      it uses relative paths ("/predict", "/health") which work seamlessly with same-origin APIs.
+ *    - If opened locally via file://, it defaults to "http://127.0.0.1:8000".
+ * 2. If you deploy your backend to an external cloud URL, you can set API_BASE_URL here.
  * 3. You can also change the API URL directly in the UI at runtime using the
  *    "⚙️ API Settings" button without modifying any code!
  */
 
 window.CARDIOGUARD_CONFIG = {
     // Set to your backend URL (e.g., "http://127.0.0.1:8000" or "https://api.yourdomain.com").
-    // Leave empty "" for automatic detection.
+    // Leave empty "" for automatic same-origin detection.
     API_BASE_URL: "",
 
     // System info
@@ -30,8 +29,8 @@ window.CARDIOGUARD_CONFIG = {
      * Priority:
      * 1. User runtime setting in localStorage ('cardioguard_api_url')
      * 2. Configured API_BASE_URL above
-     * 3. Same-origin if running under FastAPI
-     * 4. Fallback to http://127.0.0.1:8000 for static hosting / file://
+     * 3. Same-origin relative path if running online via HTTP/HTTPS
+     * 4. Fallback to http://127.0.0.1:8000 for local file:// testing
      */
     getApiUrl: function(endpoint) {
         if (!endpoint.startsWith("/")) {
@@ -49,12 +48,12 @@ window.CARDIOGUARD_CONFIG = {
             return this.API_BASE_URL.trim().replace(/\/+$/, "") + endpoint;
         }
 
-        // 3. Auto-detection: if hosted together on same origin or port 8000
-        if (window.location.port === "8000" || (window.location.origin && window.location.origin !== "null" && window.location.protocol.startsWith("http") && !window.location.hostname.includes("github.io") && !window.location.hostname.includes("netlify.app") && !window.location.hostname.includes("vercel.app") && !window.location.hostname.includes("pages.dev"))) {
+        // 3. Auto-detection: if hosted online on HTTP/HTTPS or local dev server
+        if (window.location.protocol.startsWith("http")) {
             return endpoint;
         }
 
-        // 4. Fallback for static hosting (GitHub Pages, Netlify) or file://
+        // 4. Fallback for static file:// testing
         return "http://127.0.0.1:8000" + endpoint;
     }
 };
